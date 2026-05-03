@@ -1,70 +1,95 @@
-# SmartPing — Live Training Telemetry
+# SmartPing — Dashboard Monitoring (Prototype)
 
-A real-time monitoring dashboard for **SmartPing**, an AI-based table tennis
-training system. The hardware adaptively launches balls; a YOLOv8 camera
-pipeline detects ball positions and the player's hit/miss outcomes, streaming
-the results to this UI over WebSockets.
+Dashboard monitoring real-time untuk **SmartPing**, sistem latihan tenis meja
+adaptif berbasis CV (YOLOv8) + launcher hardware.
 
-> The physical rig and the WebSocket server are still under development. To
-> exercise the dashboard end-to-end, this project ships a **client-side dummy
-> simulator** that emits a randomized valid payload every 1.5 seconds.
+> **Status: Minggu 3 / 8 — prototype kasaran.**
+> Mockup awal dashboard sudah jalan di browser dengan dummy data lokal.
+> Heatmap, chart real, dan sambungan WebSocket asli ke modul YOLOv8 / MQTT
+> menyusul di minggu berikutnya.
 
-## Stack
+## Yang sudah ada di minggu 3
 
-- **React 18** (functional components + hooks)
-- **Vite** dev server / bundler
-- **Tailwind CSS** (dark, sport-analytics aesthetic)
-- **Recharts** for chart visualizations
-- Pure SVG for the top-down table render and miss heatmap
+- Layout dashboard kasaran (header, status modul, metrik, viz meja, log).
+- Visualisasi meja top-down sederhana via SVG, posisi bola di-update tiap tick.
+- Statistik zona Kiri / Kanan pakai bar HTML kasar (belum Chart.js).
+- Tabel log data real-time, baris terbaru di atas, dengan highlight singkat.
+- **Dummy data simulator** di-browser (`dashboard.js`) — supaya halaman
+  langsung jalan di GitHub Pages tanpa server.
+- **Dummy server lokal Python** (`dummy_server.py`) — buat uji integrasi
+  dengan rekan modul lain (mikrokontroller emulator, MQTT bridge, dst.)
+  selama hardware launcher belum selesai dirakit.
 
-## Run
+## Roadmap
+
+- M1–2 — Riset, desain JSON API antar modul, mockup awal.
+- **M3 — Prototype dashboard HTML/CSS/JS dengan dummy data ← sekarang.**
+- M4 — Integrasi Chart.js (donut zona, line latency).
+- M5 — Heatmap miss + jejak bola + animasi servo.
+- M6 — Sambung WebSocket riil dari modul CV (YOLOv8) + MQTT.
+- M7 — Test ujung-ke-ujung dengan launcher hardware.
+- M8 — UX polish, dark mode, demo, dokumentasi.
+
+## Menjalankan dashboard secara lokal
+
+Tidak ada build step — file statis biasa.
 
 ```bash
-npm install
-npm run dev
+# pakai server statis bawaan Python:
+python -m http.server 5500
+# lalu buka http://localhost:5500
 ```
 
-Open <http://localhost:5173>.
+Atau buka `index.html` langsung dengan ekstensi *Live Server* di VS Code.
 
-## Project layout
+## Menjalankan dummy server (opsional, untuk uji lintas modul)
 
-```
-src/
-  App.jsx                       composes the dashboard
-  hooks/useDummyWebSocket.js    setInterval-based payload simulator
-  components/
-    Header.jsx                  service status + session metrics
-    TableVisualization.jsx      top-down table, ball plot, miss heatmap
-    Analytics.jsx               zone bar chart + active-throw metrics
-    DataLog.jsx                 live data table (most recent at top)
-    StatusDot.jsx               reusable connection indicator
+```bash
+pip install websockets
+python dummy_server.py
+# server WS dummy: ws://localhost:8765
 ```
 
-## Deploying to GitHub Pages (Deploy from a branch)
+Server ini broadcast payload JSON setiap 1.5 detik ke semua client WebSocket
+yang connect — bisa dipakai bareng oleh dashboard, emulator mikrokontroller,
+atau MQTT bridge buat integrasi paralel sebelum hardware siap.
 
-The workflow at `.github/workflows/deploy.yml` builds the app on every push to
-`main` (or the active feature branch) and force-pushes the `dist/` output to
-an orphan `gh-pages` branch.
+## Kontrak JSON antar modul (kasaran v0.3)
 
-One-time setup in the repo on github.com:
+Payload yang dikirim modul CV YOLOv8 → dashboard / MQTT / mikrokontroller:
 
-1. Push to a tracked branch — the workflow will create the `gh-pages` branch.
-2. **Settings → Pages → Build and deployment**:
+```json
+{
+  "timestamp": "2026-05-03T10:23:45.123Z",
+  "ball_id": 124,
+  "position": { "x": 320, "y": 180 },
+  "zone": "Kiri",
+  "confidence": 0.92,
+  "latency_ms": 24,
+  "model": "YOLOv8n",
+  "servo_angle": 45,
+  "hit_miss_decision": "Miss"
+}
+```
+
+`zone` ∈ {`Kiri`, `Kanan`}; `hit_miss_decision` ∈ {`Hit`, `Miss`}.
+Final field set masih bisa berubah sebelum minggu 6.
+
+## Deploy ke GitHub Pages (Deploy from a branch)
+
+Tidak ada build — file statis biasa, bisa langsung dilayani Pages dari root branch.
+
+1. **Settings → Pages → Build and deployment**
    - **Source**: *Deploy from a branch*
-   - **Branch**: `gh-pages` · `/ (root)`
-3. The site will be live at `https://<owner>.github.io/vibecodedaislop/`.
+   - **Branch**: `claude/smartping-monitoring-dashboard-2SMmb` (atau `main`) · folder `/ (root)`
+2. Tunggu beberapa menit, situs muncul di
+   `https://<owner>.github.io/vibecodedaislop/`.
 
-`vite.config.js` defaults `base` to `/vibecodedaislop/` so assets resolve
-correctly under the project-page subpath. If you serve from a custom domain or
-a user/organization page (root path), build with:
+## Struktur file
 
-```bash
-BASE_PATH=/ npm run build
 ```
-
-## Swapping the simulator for a real WebSocket
-
-`useDummyWebSocket.js` exposes the same `{ latest, history, connected }`
-shape that a real WS hook would. Replace the body with a `new WebSocket(url)`
-that calls `setLatest` / `setHistory` on each `message` event and the rest of
-the dashboard keeps working unchanged.
+index.html          markup dashboard
+style.css           styling kasaran
+dashboard.js        simulator dummy + DOM updater
+dummy_server.py     dummy WebSocket server lokal (Python)
+```
