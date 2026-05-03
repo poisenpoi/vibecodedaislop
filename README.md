@@ -40,15 +40,18 @@ src/
     StatusDot.jsx               reusable connection indicator
 ```
 
-## Deploying to GitHub Pages
+## Deploying to GitHub Pages (Deploy from a branch)
 
-The repo ships with `.github/workflows/deploy.yml`, which builds on every push
-to `main` (or the active feature branch) and publishes `dist/` to GitHub Pages.
+The workflow at `.github/workflows/deploy.yml` builds the app on every push to
+`main` (or the active feature branch) and force-pushes the `dist/` output to
+an orphan `gh-pages` branch.
 
 One-time setup in the repo on github.com:
 
-1. **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-2. Push to a tracked branch — the workflow will build and deploy.
+1. Push to a tracked branch — the workflow will create the `gh-pages` branch.
+2. **Settings → Pages → Build and deployment**:
+   - **Source**: *Deploy from a branch*
+   - **Branch**: `gh-pages` · `/ (root)`
 3. The site will be live at `https://<owner>.github.io/vibecodedaislop/`.
 
 `vite.config.js` defaults `base` to `/vibecodedaislop/` so assets resolve
