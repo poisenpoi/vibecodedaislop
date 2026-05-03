@@ -1,4 +1,4 @@
-/* SmartPing — styling kasaran, font default browser */
+/* SmartPing — hitam putih */
 
 * { box-sizing: border-box; }
 
@@ -6,8 +6,8 @@ body {
   margin: 0;
   font-family: sans-serif;
   font-size: 14px;
-  background: #0f172a;
-  color: #e2e8f0;
+  background: #fff;
+  color: #000;
 }
 
 h1, h2, h3, p { margin: 0; }
@@ -15,22 +15,20 @@ h1, h2, h3, p { margin: 0; }
 /* ---------- header ---------- */
 
 .topbar {
-  padding: 16px 20px 14px;
-  background: #1e293b;
-  border-bottom: 1px solid #334155;
+  padding: 14px 20px;
+  border-bottom: 2px solid #000;
 }
 
 .topbar h1 {
   font-size: 22px;
 }
 
-/* ---------- judul tiap section ---------- */
+/* ---------- judul section ---------- */
 
 .section-title {
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #94a3b8;
   margin-bottom: 8px;
 }
 
@@ -38,13 +36,12 @@ h1, h2, h3, p { margin: 0; }
   font-size: 11px;
   font-weight: bold;
   text-transform: uppercase;
-  color: #94a3b8;
   margin: 14px 0 6px;
 }
 
 .card {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: #fff;
+  border: 1px solid #000;
   padding: 12px 14px;
 }
 
@@ -53,8 +50,7 @@ h1, h2, h3, p { margin: 0; }
 .status-bar {
   margin: 14px 20px 0;
   padding: 10px 14px;
-  background: #1e293b;
-  border: 1px solid #334155;
+  border: 1px solid #000;
 }
 
 .status-list {
@@ -78,15 +74,18 @@ h1, h2, h3, p { margin: 0; }
   height: 10px;
   border-radius: 50%;
   display: inline-block;
+  border: 1px solid #000;
+  background: #fff;
 }
-.status-dot.online  { background: #22c55e; }
-.status-dot.offline { background: #ef4444; }
-.status-dot.pending { background: #f59e0b; }
+.status-dot.online  { background: #000; }
+.status-dot.pending {
+  background: linear-gradient(90deg, #000 50%, #fff 50%);
+}
 
 .status-tag {
   font-size: 10px;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: #555;
 }
 
 /* ---------- metrics bar ---------- */
@@ -94,22 +93,21 @@ h1, h2, h3, p { margin: 0; }
 .metrics-bar {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 1px;
   margin: 12px 20px 0;
-  background: #334155;
-  border: 1px solid #334155;
+  border: 1px solid #000;
 }
 
 .metric {
-  background: #1e293b;
   padding: 10px 12px;
+  border-right: 1px solid #000;
 }
+.metric:last-child { border-right: none; }
 
 .metric-label {
   display: block;
   font-size: 10px;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: #555;
   margin-bottom: 2px;
 }
 
@@ -117,7 +115,6 @@ h1, h2, h3, p { margin: 0; }
   display: block;
   font-size: 22px;
   font-weight: bold;
-  color: #f8fafc;
 }
 
 /* ---------- main grid ---------- */
@@ -126,15 +123,22 @@ h1, h2, h3, p { margin: 0; }
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 14px;
-  margin: 14px 20px 0;
+  margin: 14px 20px 20px;
+  align-items: start;
 }
 
 @media (max-width: 900px) {
   .grid { grid-template-columns: 1fr; }
 }
 
+.right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 .table-wrap {
-  background: #064e3b;
+  border: 1px solid #000;
   padding: 6px;
 }
 
@@ -162,44 +166,53 @@ h1, h2, h3, p { margin: 0; }
 
 .zone-label {
   font-weight: bold;
-  color: #cbd5e1;
 }
 
 .zone-bar {
   display: flex;
   height: 16px;
-  background: #0f172a;
-  border: 1px solid #334155;
+  background: #fff;
+  border: 1px solid #000;
   overflow: hidden;
 }
 
 .bar { height: 100%; }
-.bar-hit  { background: #22c55e; }
-.bar-miss { background: #ef4444; }
+.bar-hit  { background: #000; }
+.bar-miss {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #000 0 3px,
+    #fff 3px 6px
+  );
+}
 
 .zone-num {
   font-size: 12px;
   text-align: right;
-  color: #cbd5e1;
 }
 
 .legend {
   display: flex;
   gap: 14px;
   font-size: 11px;
-  color: #94a3b8;
   margin-top: 4px;
 }
 
 .dot {
   display: inline-block;
   width: 8px; height: 8px;
-  border-radius: 50%;
   margin-right: 4px;
   vertical-align: middle;
+  border: 1px solid #000;
 }
-.dot-hit  { background: #22c55e; }
-.dot-miss { background: #ef4444; }
+.dot-hit  { background: #000; }
+.dot-miss {
+  background-image: repeating-linear-gradient(
+    45deg,
+    #000 0 2px,
+    #fff 2px 4px
+  );
+}
 
 /* ---------- active throw ---------- */
 
@@ -214,33 +227,25 @@ h1, h2, h3, p { margin: 0; }
   justify-content: space-between;
   font-size: 13px;
   padding: 5px 0;
-  border-bottom: 1px dashed #334155;
+  border-bottom: 1px dashed #000;
 }
 
 .kv span:first-child {
-  color: #94a3b8;
+  color: #555;
   font-size: 11px;
   text-transform: uppercase;
 }
 
-.kv span:last-child {
-  color: #f1f5f9;
-}
-
-.decision.hit  { color: #22c55e; font-weight: bold; }
-.decision.miss { color: #ef4444; font-weight: bold; }
+.decision.hit  { font-weight: bold; }
+.decision.miss { font-weight: bold; font-style: italic; }
 
 /* ---------- log table ---------- */
 
-.log-card {
-  margin: 14px 20px 20px;
-}
-
 .log-wrap {
   margin-top: 4px;
-  max-height: 300px;
-  overflow-y: auto;
-  border: 1px solid #334155;
+  max-height: 280px;
+  overflow: auto;
+  border: 1px solid #000;
 }
 
 #log-table {
@@ -251,38 +256,39 @@ h1, h2, h3, p { margin: 0; }
 
 #log-table th,
 #log-table td {
-  padding: 6px 10px;
+  padding: 5px 8px;
   text-align: left;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid #000;
 }
 
 #log-table thead th {
   position: sticky;
   top: 0;
-  background: #0f172a;
-  color: #94a3b8;
+  background: #000;
+  color: #fff;
   font-size: 10px;
   text-transform: uppercase;
   font-weight: bold;
 }
 
-#log-table tbody tr:nth-child(odd) { background: rgba(255,255,255,0.02); }
-#log-table tbody tr.new { background: rgba(56, 189, 248, 0.12); }
+#log-table tbody tr:nth-child(odd) { background: #f3f3f3; }
+#log-table tbody tr.new { background: #ddd; }
 
 #log-table tr.empty td {
   text-align: center;
-  color: #64748b;
+  color: #555;
   padding: 18px;
 }
 
 .tag {
   display: inline-block;
-  padding: 1px 6px;
+  padding: 1px 5px;
   font-size: 10px;
   font-weight: bold;
   text-transform: uppercase;
+  border: 1px solid #000;
+  background: #fff;
+  color: #000;
 }
-.tag-kiri  { background: rgba(56,189,248,0.18); color: #38bdf8; }
-.tag-kanan { background: rgba(132,204,22,0.18); color: #84cc16; }
-.tag-hit   { background: rgba(34,197,94,0.18);  color: #22c55e; }
-.tag-miss  { background: rgba(239,68,68,0.18);  color: #ef4444; }
+.tag-hit  { background: #000; color: #fff; }
+.tag-miss { background: #fff; color: #000; font-style: italic; }

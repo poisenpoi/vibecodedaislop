@@ -28,67 +28,67 @@
       <h2 class="section-title">Visualisasi Meja</h2>
       <div class="table-wrap">
         <svg id="table-svg" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet">
-          <rect x="6" y="6" width="628" height="348" fill="#0e6e4f" stroke="#e2e8f0" stroke-width="2"/>
-          <line x1="320" y1="6" x2="320" y2="354" stroke="#e2e8f0" stroke-width="3" stroke-dasharray="6 4"/>
-          <line x1="6" y1="180" x2="634" y2="180" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 6" opacity="0.6"/>
-          <text x="160" y="32" text-anchor="middle" fill="#e2e8f0" font-size="14">KIRI</text>
-          <text x="480" y="32" text-anchor="middle" fill="#e2e8f0" font-size="14">KANAN</text>
-          <circle id="ball" cx="320" cy="180" r="6" fill="#facc15" stroke="#1e293b" stroke-width="1.5"/>
+          <rect x="6" y="6" width="628" height="348" fill="#ffffff" stroke="#000" stroke-width="2"/>
+          <line x1="320" y1="6" x2="320" y2="354" stroke="#000" stroke-width="2" stroke-dasharray="6 4"/>
+          <line x1="6" y1="180" x2="634" y2="180" stroke="#000" stroke-width="1" stroke-dasharray="3 6" opacity="0.5"/>
+          <text x="160" y="32" text-anchor="middle" fill="#000" font-size="14">KIRI</text>
+          <text x="480" y="32" text-anchor="middle" fill="#000" font-size="14">KANAN</text>
+          <circle id="ball" cx="320" cy="180" r="6" fill="#000" stroke="#000" stroke-width="1.5"/>
         </svg>
       </div>
     </section>
 
-    <aside class="card">
-      <h2 class="section-title">Statistik Zona</h2>
-      <div class="zone-stats">
-        <div class="zone-row">
-          <div class="zone-label">Kiri</div>
-          <div class="zone-bar"><div id="bar-kiri-hit" class="bar bar-hit" style="width:0%"></div><div id="bar-kiri-miss" class="bar bar-miss" style="width:0%"></div></div>
-          <div class="zone-num"><span id="num-kiri">0/0</span></div>
+    <div class="right-col">
+      <aside class="card">
+        <h2 class="section-title">Statistik Zona</h2>
+        <div class="zone-stats">
+          <div class="zone-row">
+            <div class="zone-label">Kiri</div>
+            <div class="zone-bar"><div id="bar-kiri-hit" class="bar bar-hit" style="width:0%"></div><div id="bar-kiri-miss" class="bar bar-miss" style="width:0%"></div></div>
+            <div class="zone-num"><span id="num-kiri">0/0</span></div>
+          </div>
+          <div class="zone-row">
+            <div class="zone-label">Kanan</div>
+            <div class="zone-bar"><div id="bar-kanan-hit" class="bar bar-hit" style="width:0%"></div><div id="bar-kanan-miss" class="bar bar-miss" style="width:0%"></div></div>
+            <div class="zone-num"><span id="num-kanan">0/0</span></div>
+          </div>
+          <div class="legend">
+            <span><span class="dot dot-hit"></span> Hit</span>
+            <span><span class="dot dot-miss"></span> Miss</span>
+          </div>
         </div>
-        <div class="zone-row">
-          <div class="zone-label">Kanan</div>
-          <div class="zone-bar"><div id="bar-kanan-hit" class="bar bar-hit" style="width:0%"></div><div id="bar-kanan-miss" class="bar bar-miss" style="width:0%"></div></div>
-          <div class="zone-num"><span id="num-kanan">0/0</span></div>
-        </div>
-        <div class="legend">
-          <span><span class="dot dot-hit"></span> Hit</span>
-          <span><span class="dot dot-miss"></span> Miss</span>
-        </div>
-      </div>
 
-      <h3 class="sub-title">Lemparan Aktif</h3>
-      <div class="active-throw">
-        <div class="kv"><span>Ball ID</span><span id="active-id">&mdash;</span></div>
-        <div class="kv"><span>Servo</span><span id="active-servo">&mdash;</span></div>
-        <div class="kv"><span>Decision</span><span id="active-decision" class="decision">&mdash;</span></div>
-        <div class="kv"><span>Confidence</span><span id="active-conf">&mdash;</span></div>
-      </div>
-    </aside>
-  </main>
+        <h3 class="sub-title">Lemparan Aktif</h3>
+        <div class="active-throw">
+          <div class="kv"><span>Servo</span><span id="active-servo">&mdash;</span></div>
+          <div class="kv"><span>Decision</span><span id="active-decision" class="decision">&mdash;</span></div>
+          <div class="kv"><span>Confidence</span><span id="active-conf">&mdash;</span></div>
+        </div>
+      </aside>
 
-  <section class="card log-card">
-    <h2 class="section-title">Log Data Real-time</h2>
-    <div class="log-wrap">
-      <table id="log-table">
-        <thead>
-          <tr>
-            <th>Timestamp</th>
-            <th>Ball</th>
-            <th>X</th>
-            <th>Y</th>
-            <th>Zona</th>
-            <th>Decision</th>
-            <th>Conf</th>
-            <th>Latency</th>
-          </tr>
-        </thead>
-        <tbody id="log-body">
-          <tr class="empty"><td colspan="8">Menunggu data&hellip;</td></tr>
-        </tbody>
-      </table>
+      <section class="card">
+        <h2 class="section-title">Log Data Real-time</h2>
+        <div class="log-wrap">
+          <table id="log-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>X</th>
+                <th>Y</th>
+                <th>Zona</th>
+                <th>Decision</th>
+                <th>Conf</th>
+                <th>Latency</th>
+              </tr>
+            </thead>
+            <tbody id="log-body">
+              <tr class="empty"><td colspan="7">Menunggu data&hellip;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  </section>
+  </main>
 
   <script src="dashboard.js"></script>
 </body>

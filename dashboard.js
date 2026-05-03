@@ -121,7 +121,8 @@ function updateBall(p) {
   const ball = document.getElementById('ball');
   ball.setAttribute('cx', p.position.x);
   ball.setAttribute('cy', p.position.y);
-  ball.setAttribute('fill', p.hit_miss_decision === 'Hit' ? '#22c55e' : '#ef4444');
+  // Hit = bola solid hitam, Miss = bola kosong (cuma garis tepi).
+  ball.setAttribute('fill', p.hit_miss_decision === 'Hit' ? '#000' : '#fff');
 }
 
 function updateMetrics(p) {
@@ -150,7 +151,6 @@ function updateZoneStats() {
 }
 
 function updateActiveThrow(p) {
-  document.getElementById('active-id').textContent = `#${pad(p.ball_id, 4)}`;
   document.getElementById('active-servo').textContent = `${p.servo_angle}°`;
   document.getElementById('active-conf').textContent = `${(p.confidence * 100).toFixed(0)}%`;
   const dec = document.getElementById('active-decision');
@@ -169,10 +169,9 @@ function prependLogRow(p) {
   const isHit = p.hit_miss_decision === 'Hit';
   tr.innerHTML = `
     <td>${formatTime(p.timestamp)}</td>
-    <td>#${pad(p.ball_id, 4)}</td>
     <td>${pad(p.position.x, 3)}</td>
     <td>${pad(p.position.y, 3)}</td>
-    <td><span class="tag tag-${p.zone.toLowerCase()}">${p.zone}</span></td>
+    <td><span class="tag">${p.zone}</span></td>
     <td><span class="tag tag-${isHit ? 'hit' : 'miss'}">${p.hit_miss_decision}</span></td>
     <td>${(p.confidence * 100).toFixed(0)}%</td>
     <td>${p.latency_ms} ms</td>
