@@ -1,4 +1,4 @@
-/* SmartPing — hitam putih */
+/* SmartPing — pure hitam putih */
 
 * { box-sizing: border-box; }
 
@@ -16,7 +16,8 @@ h1, h2, h3, p { margin: 0; }
 
 .topbar {
   padding: 14px 20px;
-  border-bottom: 2px solid #000;
+  background: #000;
+  color: #fff;
 }
 
 .topbar h1 {
@@ -85,7 +86,7 @@ h1, h2, h3, p { margin: 0; }
 .status-tag {
   font-size: 10px;
   text-transform: uppercase;
-  color: #555;
+  font-weight: bold;
 }
 
 /* ---------- metrics bar ---------- */
@@ -107,7 +108,6 @@ h1, h2, h3, p { margin: 0; }
   display: block;
   font-size: 10px;
   text-transform: uppercase;
-  color: #555;
   margin-bottom: 2px;
 }
 
@@ -123,18 +123,12 @@ h1, h2, h3, p { margin: 0; }
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 14px;
-  margin: 14px 20px 20px;
+  margin: 14px 20px 0;
   align-items: start;
 }
 
 @media (max-width: 900px) {
   .grid { grid-template-columns: 1fr; }
-}
-
-.right-col {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
 }
 
 .table-wrap {
@@ -231,7 +225,6 @@ h1, h2, h3, p { margin: 0; }
 }
 
 .kv span:first-child {
-  color: #555;
   font-size: 11px;
   text-transform: uppercase;
 }
@@ -239,11 +232,15 @@ h1, h2, h3, p { margin: 0; }
 .decision.hit  { font-weight: bold; }
 .decision.miss { font-weight: bold; font-style: italic; }
 
-/* ---------- log table ---------- */
+/* ---------- log table (full width di bawah grid) ---------- */
+
+.log-card {
+  margin: 14px 20px 20px;
+}
 
 .log-wrap {
   margin-top: 4px;
-  max-height: 280px;
+  max-height: 320px;
   overflow: auto;
   border: 1px solid #000;
 }
@@ -256,7 +253,7 @@ h1, h2, h3, p { margin: 0; }
 
 #log-table th,
 #log-table td {
-  padding: 5px 8px;
+  padding: 6px 10px;
   text-align: left;
   border-bottom: 1px solid #000;
 }
@@ -271,12 +268,10 @@ h1, h2, h3, p { margin: 0; }
   font-weight: bold;
 }
 
-#log-table tbody tr:nth-child(odd) { background: #f3f3f3; }
-#log-table tbody tr.new { background: #ddd; }
+#log-table tbody tr.new { font-weight: bold; }
 
 #log-table tr.empty td {
   text-align: center;
-  color: #555;
   padding: 18px;
 }
 
