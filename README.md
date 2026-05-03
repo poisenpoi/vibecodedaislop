@@ -40,6 +40,25 @@ src/
     StatusDot.jsx               reusable connection indicator
 ```
 
+## Deploying to GitHub Pages
+
+The repo ships with `.github/workflows/deploy.yml`, which builds on every push
+to `main` (or the active feature branch) and publishes `dist/` to GitHub Pages.
+
+One-time setup in the repo on github.com:
+
+1. **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. Push to a tracked branch — the workflow will build and deploy.
+3. The site will be live at `https://<owner>.github.io/vibecodedaislop/`.
+
+`vite.config.js` defaults `base` to `/vibecodedaislop/` so assets resolve
+correctly under the project-page subpath. If you serve from a custom domain or
+a user/organization page (root path), build with:
+
+```bash
+BASE_PATH=/ npm run build
+```
+
 ## Swapping the simulator for a real WebSocket
 
 `useDummyWebSocket.js` exposes the same `{ latest, history, connected }`
