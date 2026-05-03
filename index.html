@@ -38,55 +38,57 @@
       </div>
     </section>
 
-    <aside class="card">
-      <h2 class="section-title">Statistik</h2>
-      <div class="zone-stats">
-        <div class="zone-row">
-          <div class="zone-label">Kiri</div>
-          <div class="zone-bar"><div id="bar-kiri-hit" class="bar bar-hit" style="width:0%"></div><div id="bar-kiri-miss" class="bar bar-miss" style="width:0%"></div></div>
-          <div class="zone-num"><span id="num-kiri">0/0</span></div>
+    <div class="right-col">
+      <aside class="card">
+        <h2 class="section-title">Statistik</h2>
+        <div class="zone-stats">
+          <div class="zone-row">
+            <div class="zone-label">Kiri</div>
+            <div class="zone-bar"><div id="bar-kiri-hit" class="bar bar-hit" style="width:0%"></div><div id="bar-kiri-miss" class="bar bar-miss" style="width:0%"></div></div>
+            <div class="zone-num"><span id="num-kiri">0/0</span></div>
+          </div>
+          <div class="zone-row">
+            <div class="zone-label">Kanan</div>
+            <div class="zone-bar"><div id="bar-kanan-hit" class="bar bar-hit" style="width:0%"></div><div id="bar-kanan-miss" class="bar bar-miss" style="width:0%"></div></div>
+            <div class="zone-num"><span id="num-kanan">0/0</span></div>
+          </div>
+          <div class="legend">
+            <span><span class="dot dot-hit"></span> Hit</span>
+            <span><span class="dot dot-miss"></span> Miss</span>
+          </div>
         </div>
-        <div class="zone-row">
-          <div class="zone-label">Kanan</div>
-          <div class="zone-bar"><div id="bar-kanan-hit" class="bar bar-hit" style="width:0%"></div><div id="bar-kanan-miss" class="bar bar-miss" style="width:0%"></div></div>
-          <div class="zone-num"><span id="num-kanan">0/0</span></div>
-        </div>
-        <div class="legend">
-          <span><span class="dot dot-hit"></span> Hit</span>
-          <span><span class="dot dot-miss"></span> Miss</span>
-        </div>
-      </div>
 
-      <h3 class="sub-title">Lemparan Aktif</h3>
-      <div class="active-throw">
-        <div class="kv"><span>Servo</span><span id="active-servo">&mdash;</span></div>
-        <div class="kv"><span>Decision</span><span id="active-decision" class="decision">&mdash;</span></div>
-        <div class="kv"><span>Confidence</span><span id="active-conf">&mdash;</span></div>
-      </div>
-    </aside>
-  </main>
+        <h3 class="sub-title">Lemparan Aktif</h3>
+        <div class="active-throw">
+          <div class="kv"><span>Servo</span><span id="active-servo">&mdash;</span></div>
+          <div class="kv"><span>Decision</span><span id="active-decision" class="decision">&mdash;</span></div>
+          <div class="kv"><span>Confidence</span><span id="active-conf">&mdash;</span></div>
+        </div>
+      </aside>
 
-  <section class="card log-card">
-    <h2 class="section-title">Log Data</h2>
-    <div class="log-wrap">
-      <table id="log-table">
-        <thead>
-          <tr>
-            <th>Timestamp</th>
-            <th>X</th>
-            <th>Y</th>
-            <th>Zona</th>
-            <th>Decision</th>
-            <th>Conf</th>
-            <th>Latency</th>
-          </tr>
-        </thead>
-        <tbody id="log-body">
-          <tr class="empty"><td colspan="7">Menunggu data&hellip;</td></tr>
-        </tbody>
-      </table>
+      <section class="card">
+        <h2 class="section-title">Log Data</h2>
+        <div class="log-wrap">
+          <table id="log-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>X</th>
+                <th>Y</th>
+                <th>Zona</th>
+                <th>Decision</th>
+                <th>Conf</th>
+                <th>Latency</th>
+              </tr>
+            </thead>
+            <tbody id="log-body">
+              <tr class="empty"><td colspan="7">Menunggu data&hellip;</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
     </div>
-  </section>
+  </main>
 
   <script src="dashboard.js"></script>
 </body>

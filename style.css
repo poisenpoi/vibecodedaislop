@@ -121,14 +121,20 @@ h1, h2, h3, p { margin: 0; }
 
 .grid {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 2fr;
   gap: 14px;
-  margin: 14px 20px 0;
+  margin: 14px 20px 20px;
   align-items: start;
 }
 
 @media (max-width: 900px) {
   .grid { grid-template-columns: 1fr; }
+}
+
+.right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .table-wrap {
@@ -232,11 +238,7 @@ h1, h2, h3, p { margin: 0; }
 .decision.hit  { font-weight: bold; }
 .decision.miss { font-weight: bold; font-style: italic; }
 
-/* ---------- log table (full width di bawah grid) ---------- */
-
-.log-card {
-  margin: 14px 20px 20px;
-}
+/* ---------- log table (di kolom kanan, di bawah Statistik) ---------- */
 
 .log-wrap {
   margin-top: 4px;
